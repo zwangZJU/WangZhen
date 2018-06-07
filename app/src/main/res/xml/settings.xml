@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+
+    <EditTextPreference
+        android:defaultValue="Default value"
+        android:key="username"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:summary="@string/please_input_username"
+        android:title="@string/username" />
+    <EditTextPreference
+        android:defaultValue="Default value"
+        android:key="password"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:inputType="textPassword"
+        android:summary="@string/please_input_password"
+        android:title="@string/password"/>
+    <EditTextPreference
+        android:defaultValue="Default value"
+        android:key="refresh_period"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:inputType="phone"
+        android:summary="@string/refresh_period_second"
+        android:title="@string/refresh_period" />
+</PreferenceScreen>

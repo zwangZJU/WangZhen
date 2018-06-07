@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="cn.zju.id21732091.wangzhen.CalculatorActivity">
+
+    <EditText
+        android:id="@+id/et_show_details"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:inputType="textMultiLine"
+        android:textSize="25sp"
+        android:focusable="true"
+        android:text="0"
+        android:scrollbars="none"
+
+        android:layout_gravity="bottom"
+        android:focusableInTouchMode="false"
+        android:gravity="end|bottom"/>
+
+    <EditText
+        android:id="@+id/et_calc_result"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingTop="20dp"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:background="@android:color/transparent"
+        android:textSize="35sp"
+        android:focusable="true"
+        android:layout_gravity="center_vertical"
+        android:focusableInTouchMode="false"
+        android:gravity="right"/>
+
+    <GridLayout
+        android:id="@+id/gl_keyboard"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:padding="1dp"
+        android:layout_weight="4"
+
+
+        android:layout_marginTop="8dp"
+        android:columnCount="4"
+        android:rowCount="5">
+
+
+        <Button
+            android:text="C"
+            android:id="@+id/btn_clean"
+            android:textSize="20sp"
+            android:background="@drawable/clac_button"
+            android:layout_gravity="center"
+            android:textColor="@color/colorAccent"
+            />
+        <ImageButton
+
+
+            android:id="@+id/ibt_backspace"
+            android:src="@drawable/backspace"
+            android:background="@drawable/clac_button"
+            android:layout_gravity="fill"
+            />
+        <Button
+            android:text="÷"
+            android:id="@+id/btn_div"
+            android:textSize="25sp"
+            android:background="@drawable/clac_button"
+            android:layout_gravity="center"
+            android:textColor="@color/calc_button_text"/>
+        <Button
+            android:text="×"
+            android:id="@+id/btn_mul"
+            android:textSize="25sp"
+            android:background="@drawable/clac_button"
+            android:layout_gravity="center"
+            android:textColor="@color/calc_button_text"/>
+        <Button
+            android:text="7"
+            android:id="@+id/btn_7"
+            android:textSize="20sp"
+            android:background="@drawable/clac_button"
+            android:layout_gravity="center"
+            android:textColor="@color/calc_button_text"/>
+
+        <Button
+            android:text="8"
+            android:id="@+id/btn_8"
+            android:textSize="20sp"
+            android:background="@drawable/clac_button"
+            android:layout_gravity="center"
+            android:textColor="@color/calc_button_text"/>
+        <Button
+            android:text="9"
+            android:id="@+id/btn_9"
+            android:textSize="20sp"
+            android:background="@drawable/clac_button"
+            android:layout_gravity="center"
+            android:textColor="@color/calc_button_text"/>
+        <Button
+            android:text="－"
+            android:id="@+id/btn_sub"
+            android:textSize="20sp"
+            android:background="@drawable/clac_button"
+            android:layout_gravity="center"
+            android:textColor="@color/calc_button_text"/>
+        <Button
+            android:text="4"
+            android:id="@+id/btn_4"
+            android:textSize="20sp"
+            android:background="@drawable/clac_button"
+            android:layout_gravity="center"
+            android:textColor="@color/calc_button_text"/>
+        <Button
+            android:text="5"
+            android:id="@+id/btn_5"
+            android:textSize="20sp"
+            android:background="@drawable/clac_button"
+            android:layout_gravity="center"
+            android:textColor="@color/calc_button_text"/>
+        <Button
+            android:text="6"
+            android:id="@+id/btn_6"
+            android:textSize="20sp"
+            android:background="@drawable/clac_button"
+            android:layout_gravity="center"
+            android:textColor="@color/calc_button_text"/>
+        <Button
+            android:text="+"
+            android:id="@+id/btn_add"
+            android:textSize="20sp"
+            android:background="@drawable/clac_button"
+            android:layout_gravity="center"
+            android:textColor="@color/calc_button_text"/>
+        <Button
+            android:text="1"
+            android:id="@+id/btn_1"
+            android:textSize="20sp"
+            android:background="@drawable/clac_button"
+            android:layout_gravity="center"
+            android:textColor="@color/calc_button_text"/>
+        <Button
+            android:text="2"
+            android:id="@+id/btn_2"
+            android:textSize="20sp"
+            android:background="@drawable/clac_button"
+            android:layout_gravity="center"
+            android:textColor="@color/calc_button_text"/>
+        <Button
+            android:text="3"
+            android:id="@+id/btn_3"
+            android:textSize="20sp"
+            android:background="@drawable/clac_button"
+            android:layout_gravity="center"
+            android:textColor="@color/calc_button_text"/>
+        <Button
+            android:text="="
+            android:id="@+id/btn_equle"
+            android:textSize="25sp"
+            android:background="@drawable/clac_button"
+
+            android:layout_gravity="fill"
+            android:layout_rowSpan="2"
+            android:textColor="@color/colorAccent"/>
+        <Button
+            android:text="%"
+            android:id="@+id/btn_percent"
+            android:textSize="20sp"
+            android:background="@drawable/clac_button"
+            android:layout_gravity="center"
+            android:textColor="@color/calc_button_text"/>
+        <Button
+            android:text="0"
+            android:id="@+id/btn_0"
+            android:textSize="20sp"
+            android:background="@drawable/clac_button"
+            android:layout_gravity="center"
+            android:textColor="@color/calc_button_text"/>
+
+        <Button
+            android:text="."
+            android:id="@+id/btn_dot"
+            android:textSize="20sp"
+            android:background="@drawable/clac_button"
+            android:layout_gravity="center"
+            android:textColor="@color/calc_button_text"/>
+
+    </GridLayout>
+
+
+
+
+</LinearLayout>

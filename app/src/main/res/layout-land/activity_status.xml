@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/base_background">
+
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cancel"
+        android:id="@+id/tv_cancel_send"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="18dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/status_big_text"
+        android:textSize="20sp"/>
+
+
+
+    <TextView
+        android:id="@+id/tv_send_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/send_status"
+        android:textSize="20sp"
+        android:textColor="@color/status_big_text"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="8dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/author_info"
+        android:id="@+id/tv_author_info"
+        android:layout_below="@+id/tv_send_status"
+        android:layout_centerHorizontal="true"
+        android:textSize="14dp"
+        android:textColor="@color/status_small_text"
+        android:layout_marginBottom="6dp"/>
+
+
+
+    <Button
+        android:id="@+id/btn_send_status"
+        android:layout_width="60dp"
+        android:layout_height="35dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="13dp"
+        android:layout_marginRight="10dp"
+        android:textSize="16sp"
+        android:layout_alignParentTop="true"
+        android:background="@color/warning_yellow"
+        android:text="@string/send"
+        android:textColor="@color/calc_button_background_normal"/>
+
+
+
+    <EditText
+        android:id="@+id/et_edit_status"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:background="@color/white"
+        android:layout_marginTop="3dp"
+        android:gravity="top"
+        android:padding="10dp"
+        android:maxLength="360"
+        android:hint="@string/share_status"
+        android:layout_below="@+id/tv_author_info"/>
+
+    <TextView
+        android:id="@+id/tv_char_statistic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="10dp"
+        android:background="@color/white"
+        android:layout_below="@+id/et_edit_status"
+
+        android:text="0/360"
+        android:textSize="18sp"
+        android:gravity="left"/>
+
+</RelativeLayout>

@@ -1,0 +1,44 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="cn.zju.id21732091.wangzhen.HelloActivity">
+
+    <item
+        android:id="@+id/action_close"
+        android:orderInCategory="10"
+        android:title=""
+        android:icon="@drawable/ic_close_activity"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/action_calculator"
+        android:orderInCategory="0"
+        android:title="@string/item_calculator"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_status"
+        android:orderInCategory="1"
+        android:title="@string/item_status"
+        app:showAsAction="never" />
+
+
+    <item
+        android:id="@+id/action_file_storage"
+        android:orderInCategory="2"
+        android:title="@string/file_storage"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="3"
+        android:title="@string/settings"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_submit"
+        android:orderInCategory="100"
+        android:title="@string/action_settings"
+        app:showAsAction="never" />
+
+</menu>

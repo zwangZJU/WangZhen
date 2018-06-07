@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="cn.zju.id21732091.wangzhen.FileStorageActivity">
+
+    <Button
+        android:id="@+id/btn_get_files_dir"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/get_files_dir"/>
+    <Button
+        android:id="@+id/btn_get_external_storage_directory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/get_external_storage_directory"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_get_external_files_dir"
+        android:text="@string/get_external_files_dir"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_show_result"/>
+
+</LinearLayout>
