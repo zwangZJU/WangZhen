@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class HelloActivity extends AppCompatActivity {
 
@@ -33,7 +34,7 @@ public class HelloActivity extends AppCompatActivity {
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        //menu.getItem(5).setVisible(false);
+        menu.getItem(3).setVisible(false);
         return super.onPrepareOptionsMenu(menu);
     }
 
@@ -54,6 +55,7 @@ public class HelloActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_submit) {
 //            new SubmitProgram().doSubmit(this,"A1");
+            Toast.makeText(this,R.string.pause_submit,Toast.LENGTH_SHORT).show();
             return true;
         } else if (id == R.id.action_calculator) {
             startActivity(new Intent(HelloActivity.this,CalculatorActivity.class));
@@ -63,6 +65,10 @@ public class HelloActivity extends AppCompatActivity {
             startActivity(new Intent(this,FileStorageActivity.class));
         } else if(id == R.id.action_settings){
             startActivity(new Intent(this,SettingsActivity.class));
+        } else if(id == R.id.action_add_status){
+            startActivity(new Intent(this,StatusActivity.class));
+        } else if(id == R.id.action_music_list){
+            startActivity(new Intent(this,MusicListActivity.class));
         }
 
         return super.onOptionsItemSelected(item);

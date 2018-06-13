@@ -4,52 +4,34 @@
     tools:context="cn.zju.id21732091.wangzhen.HelloActivity">
 
     <item
-        android:id="@+id/action_add_status"
+        android:id="@+id/action_close"
         android:orderInCategory="10"
         android:title=""
-        android:icon="@drawable/ic_add_status"
+        android:icon="@drawable/ic_close_activity"
         app:showAsAction="ifRoom"/>
 
     <item
-        android:id="@+id/action_start_service"
-        android:orderInCategory="0"
-        android:title="@string/start_service"
-        app:showAsAction="never" />
-
-    <item
-        android:id="@+id/action_stop_service"
-        android:orderInCategory="1"
-        android:title="@string/stop_service"
-        app:showAsAction="never" />
-
-    <item
         android:id="@+id/action_calculator"
-        android:orderInCategory="2"
+        android:orderInCategory="0"
         android:title="@string/item_calculator"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/action_status"
-        android:orderInCategory="3"
+        android:orderInCategory="1"
         android:title="@string/item_status"
         app:showAsAction="never" />
 
 
     <item
         android:id="@+id/action_file_storage"
-        android:orderInCategory="4"
+        android:orderInCategory="2"
         android:title="@string/file_storage"
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/action_music_list"
-        android:orderInCategory="5"
-        android:title="@string/music_list"
-        app:showAsAction="never" />
-
-    <item
         android:id="@+id/action_settings"
-        android:orderInCategory="6"
+        android:orderInCategory="3"
         android:title="@string/settings"
         app:showAsAction="never"/>
 

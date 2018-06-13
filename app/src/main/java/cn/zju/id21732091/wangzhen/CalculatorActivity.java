@@ -170,7 +170,7 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnClic
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_sub, menu);
 
 
         return true;
@@ -263,7 +263,10 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnClic
                 FLAG_PRESS_EQUAL = false;
                 break;
             case R.id.ibt_backspace:
-                mEtCalcResult.setTextColor(getResources().getColor(R.color.gray));
+//                mEtCalcResult.setTextColor(getResources().getColor(R.color.gray));
+                if(FLAG_PRESS_EQUAL){
+                    return;
+                }
                 String[] strBackArr = str.split(" ");
                 if(str.substring(str.length()-1).matches("([0-9]+)?")&&(strBackArr.length>1 || str.length()==1)) {
                     mEtShowDetail.setText(str.length()>1?str.substring(0, str.length() - 1):"0");

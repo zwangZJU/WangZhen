@@ -29,7 +29,15 @@
             android:name=".StatusActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".FileStorageActivity" />
-        <activity android:name=".SettingsActivity"/>
+        <activity android:name=".SettingsActivity" />
+        <activity
+            android:name=".MusicListActivity"
+            android:label="本地音乐" />
+
+        <service
+            android:name=".UpdateService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>
