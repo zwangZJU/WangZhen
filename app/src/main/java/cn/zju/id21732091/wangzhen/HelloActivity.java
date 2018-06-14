@@ -59,16 +59,28 @@ public class HelloActivity extends AppCompatActivity {
             return true;
         } else if (id == R.id.action_calculator) {
             startActivity(new Intent(HelloActivity.this,CalculatorActivity.class));
+            return true;
         } else if (id == R.id.action_status) {
             startActivity(new Intent(HelloActivity.this, StatusActivity.class));
+            return true;
         } else if (id == R.id.action_file_storage){
             startActivity(new Intent(this,FileStorageActivity.class));
+            return true;
         } else if(id == R.id.action_settings){
             startActivity(new Intent(this,SettingsActivity.class));
+            return true;
         } else if(id == R.id.action_add_status){
             startActivity(new Intent(this,StatusActivity.class));
+            return true;
         } else if(id == R.id.action_music_list){
             startActivity(new Intent(this,MusicListActivity.class));
+            return true;
+        } else if(id == R.id.action_start_service){
+            startService(new Intent(this,UpdateService.class));
+            return true;
+        } else if(id == R.id.action_stop_service){
+            stopService(new Intent(this,UpdateService.class));
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
