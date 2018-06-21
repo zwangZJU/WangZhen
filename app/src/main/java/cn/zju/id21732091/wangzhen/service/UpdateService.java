@@ -5,18 +5,29 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
+import android.os.Environment;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 
 import cn.iipc.android.tweetlib.Status;
 import cn.iipc.android.tweetlib.YambaClient;
 import cn.iipc.android.tweetlib.YambaClientException;
 import cn.zju.id21732091.wangzhen.db.DbHelper;
-import cn.zju.id21732091.wangzhen.pojo.StatusContract;
+import cn.zju.id21732091.wangzhen.db.StatusContract;
+import cn.zju.id21732091.wangzhen.utils.ImageUtils;
 
 public class UpdateService extends Service implements SharedPreferences.OnSharedPreferenceChangeListener {
 
@@ -103,12 +114,17 @@ public class UpdateService extends Service implements SharedPreferences.OnShared
                     long rowID = 0;
                     for(Status status : timeline){
                         String usr = status.getUser();
-                        String msg = status.getMessage();
+                        String msg = status.getMessage().trim();
+                        String imgURL = "https"+status.getImgUrl().substring(4);
                         values.clear();
                         values.put(StatusContract.Column.ID,status.getId());
                         values.put(StatusContract.Column.USER,usr);
                         values.put(StatusContract.Column.MESSAGE,msg);
                         values.put(StatusContract.Column.CREATED_AT,status.getCreatedAt().getTime());
+                        values.put(StatusContract.Column.IMG,imgURL);
+
+                        new DownloadImageTask().execute(imgURL,getFilesDir().getPath(),usr);
+
                         rowID = db.insertWithOnConflict(StatusContract.TABLE, null,values,SQLiteDatabase.CONFLICT_IGNORE);
                         if(rowID != -1){
                             count++;
@@ -130,6 +146,24 @@ public class UpdateService extends Service implements SharedPreferences.OnShared
                 }
             }
         }
+    }
+
+    class DownloadImageTask extends AsyncTask<String, Integer, Void> {
+
+        protected Void doInBackground(String... params) {
+            Bitmap bitmap= ImageUtils.getImage((String)params[0]);
+            if(bitmap != null){
+                ImageUtils.savaImage(bitmap,(String)params[1],(String)params[2]);
+            }
+
+            return null;
+        }
+
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+
+        }
+
     }
 
 }

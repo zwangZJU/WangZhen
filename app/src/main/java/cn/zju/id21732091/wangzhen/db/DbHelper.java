@@ -4,8 +4,6 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import cn.zju.id21732091.wangzhen.pojo.StatusContract;
-
 /**
  * Created by wzlab on 2018/6/13.
  */

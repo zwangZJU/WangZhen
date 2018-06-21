@@ -53,7 +53,7 @@ public class StatusActivity extends AppCompatActivity implements TextWatcher{
             public void onClick(View view) {
                 // Toast.makeText(getApplicationContext(),"点击发送",Toast.LENGTH_SHORT).show();
                 String status = mEtEditStatus.getText().toString();
-               // new PostTask().execute(status);
+                new PostTask().execute(status);
                 //new SubmitProgram().doSubmit(StatusActivity.this,"D2");
             }
         });
@@ -61,7 +61,7 @@ public class StatusActivity extends AppCompatActivity implements TextWatcher{
         findViewById(R.id.tv_cancel_send).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(StatusActivity.this,HelloActivity.class));
+                startActivity(new Intent(StatusActivity.this,MainActivity.class));
                 finish();
             }
         });

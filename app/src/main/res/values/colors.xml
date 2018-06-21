@@ -15,4 +15,6 @@
     <color name="warning_yellow">#F50</color>
     <color name="white">#FFFFFF</color>
     <color name="rv_music_title">#111</color>
+    <color name="status_message">#111</color>
+
 </resources>

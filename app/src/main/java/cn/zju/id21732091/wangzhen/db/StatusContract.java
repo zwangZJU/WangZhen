@@ -1,4 +1,4 @@
-package cn.zju.id21732091.wangzhen.pojo;
+package cn.zju.id21732091.wangzhen.db;
 
 import android.provider.BaseColumns;
 
@@ -10,7 +10,7 @@ public class StatusContract {
     public static final String DB_NAME = "timeline.db";
     public static final int DB_VERSION = 1;
     public static final String TABLE = "status";
-    public static final String DEFAULT_SORT = Column.CREATED_AT + "DESC";
+    public static final String DEFAULT_SORT = Column.CREATED_AT + " desc";
 
     public static final String NEW_STATUSES = "cn.zju.id21732091.wangzhen.NEW_STATUSES";
 
