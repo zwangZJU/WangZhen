@@ -1,4 +1,4 @@
-package cn.zju.id21732091.wangzhen;
+package cn.zju.id21732091.wangzhen.activity;
 
 import android.Manifest;
 import android.content.Intent;
@@ -19,6 +19,8 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+
+import cn.zju.id21732091.wangzhen.R;
 
 public class FileStorageActivity extends AppCompatActivity implements View.OnClickListener{
 

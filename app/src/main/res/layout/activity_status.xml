@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:background="@color/base_background"
-    tools:context="cn.zju.id21732091.wangzhen.StatusActivity">
+    tools:context="cn.zju.id21732091.wangzhen.activity.StatusActivity">
 
 
 

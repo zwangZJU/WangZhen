@@ -1,4 +1,4 @@
-package cn.zju.id21732091.wangzhen;
+package cn.zju.id21732091.wangzhen.service;
 
 import android.app.Service;
 import android.content.ContentValues;
@@ -15,6 +15,8 @@ import java.util.List;
 import cn.iipc.android.tweetlib.Status;
 import cn.iipc.android.tweetlib.YambaClient;
 import cn.iipc.android.tweetlib.YambaClientException;
+import cn.zju.id21732091.wangzhen.db.DbHelper;
+import cn.zju.id21732091.wangzhen.pojo.StatusContract;
 
 public class UpdateService extends Service implements SharedPreferences.OnSharedPreferenceChangeListener {
 

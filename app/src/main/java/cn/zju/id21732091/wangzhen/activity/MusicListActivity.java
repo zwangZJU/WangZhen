@@ -1,4 +1,4 @@
-package cn.zju.id21732091.wangzhen;
+package cn.zju.id21732091.wangzhen.activity;
 
 import android.annotation.SuppressLint;
 import android.content.ContentResolver;
@@ -40,6 +40,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import cn.zju.id21732091.wangzhen.R;
 import cn.zju.id21732091.wangzhen.adapter.MusicAdapter;
 import cn.zju.id21732091.wangzhen.pojo.MusicInfo;
 
@@ -138,7 +139,7 @@ public class MusicListActivity extends AppCompatActivity {
                     player.start();
                     isPlay = true;
                     mIvPlay = findViewById(R.id.iv_play);
-                    mIvPlay.setImageDrawable(getResources().getDrawable(R.drawable.ic_pause_circle));
+                    mIvPlay.setImageDrawable(getResources().getDrawable(R.drawable.ic_pause_music));
                 } catch (IOException e) {
                     e.printStackTrace();
                     Toast.makeText(getApplicationContext(),"播放出现异常",Toast.LENGTH_SHORT).show();
@@ -152,12 +153,12 @@ public class MusicListActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(isPlay){
-                    mIvPlay.setImageDrawable(getResources().getDrawable(R.drawable.ic_play_circle));
+                    mIvPlay.setImageDrawable(getResources().getDrawable(R.drawable.ic_play_music));
                     isPlay = false;
                     player.pause();
 
                 }else {
-                    mIvPlay.setImageDrawable(getResources().getDrawable(R.drawable.ic_pause_circle));
+                    mIvPlay.setImageDrawable(getResources().getDrawable(R.drawable.ic_pause_music));
                     isPlay = true;
                     if(hasToched){
                         player.start();
@@ -219,7 +220,7 @@ public class MusicListActivity extends AppCompatActivity {
         }
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_submit) {
-           //new SubmitProgram().doSubmit(this,"F1");
+          // new SubmitProgram().doSubmit(this,"G1");
              Toast.makeText(this, R.string.pause_submit,Toast.LENGTH_SHORT).show();
             return true;
         } else if (id == R.id.action_calculator) {

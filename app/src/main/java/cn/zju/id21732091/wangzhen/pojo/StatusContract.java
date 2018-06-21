@@ -1,4 +1,4 @@
-package cn.zju.id21732091.wangzhen;
+package cn.zju.id21732091.wangzhen.pojo;
 
 import android.provider.BaseColumns;
 

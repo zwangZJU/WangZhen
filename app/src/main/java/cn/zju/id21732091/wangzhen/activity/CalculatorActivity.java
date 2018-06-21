@@ -1,4 +1,4 @@
-package cn.zju.id21732091.wangzhen;
+package cn.zju.id21732091.wangzhen.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,6 +18,8 @@ import android.widget.Toast;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+
+import cn.zju.id21732091.wangzhen.R;
 
 public class CalculatorActivity extends AppCompatActivity implements View.OnClickListener{
 

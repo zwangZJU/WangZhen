@@ -5,7 +5,7 @@
     android:paddingLeft="15dp"
     android:paddingRight="15dp"
     android:paddingTop="8dp"
-    android:background="#eee"
+    android:background="@color/white"
      >
 
 
@@ -13,28 +13,38 @@
     <ImageView
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:id="@+id/iv_album_img"
+        android:id="@+id/iv_play_flag"
         android:visibility="gone"
         android:layout_centerVertical="true"
         android:layout_marginRight="10dp"
-        android:src="@drawable/ic_volume_up_black"
-        android:layout_alignParentStart="true"/>
+        android:src="@drawable/ic_listening"
+        android:layout_marginEnd="20dp"
+        android:layout_alignParentEnd="true"/>
     <TextView
         android:id="@+id/tv_music_name"
         android:layout_width="wrap_content"
         android:textSize="16sp"
-        android:textColor="#111"
+        android:textColor="@color/rv_music_title"
         android:maxLines="1"
-        android:layout_toEndOf="@id/iv_album_img"
+
         android:layout_height="wrap_content"
         />
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_music_name"
+        android:id="@+id/iv_storage_flag"
+        android:src="@drawable/ic_music_local"
+        android:layout_marginEnd="3dp"
+        android:layout_marginTop="5dp"/>
         <TextView
             android:id="@+id/tv_author"
             android:layout_width="wrap_content"
             android:textSize="13sp"
             android:layout_below="@+id/tv_music_name"
-            android:layout_toEndOf="@id/iv_album_img"
+            android:layout_toRightOf="@+id/iv_storage_flag"
+            android:textColor="@color/gray"
             android:layout_marginTop="5dp"
             android:layout_height="wrap_content" />
         <TextView

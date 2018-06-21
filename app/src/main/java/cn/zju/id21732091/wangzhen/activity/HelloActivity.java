@@ -1,4 +1,4 @@
-package cn.zju.id21732091.wangzhen;
+package cn.zju.id21732091.wangzhen.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,9 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import cn.zju.id21732091.wangzhen.R;
+import cn.zju.id21732091.wangzhen.service.UpdateService;
 
 public class HelloActivity extends AppCompatActivity {
 

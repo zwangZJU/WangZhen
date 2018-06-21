@@ -1,8 +1,10 @@
-package cn.zju.id21732091.wangzhen;
+package cn.zju.id21732091.wangzhen.db;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import cn.zju.id21732091.wangzhen.pojo.StatusContract;
 
 /**
  * Created by wzlab on 2018/6/13.
@@ -12,7 +14,7 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final String TAG = DbHelper.class.getSimpleName();
 
     public DbHelper(Context context) {
-        super(context,StatusContract.DB_NAME,null,StatusContract.DB_VERSION);
+        super(context, StatusContract.DB_NAME,null,StatusContract.DB_VERSION);
     }
 
     @Override
