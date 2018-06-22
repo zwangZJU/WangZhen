@@ -13,9 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activity.MainActivity"
-            android:label="我的微博"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:name=".activity.StartActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,8 +28,10 @@
         <activity
             android:name=".activity.StatusActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.FileStorageActivity" />
-        <activity android:name=".activity.SettingsActivity" />
+        <activity android:name=".activity.FileStorageActivity"
+            android:label="@string/file_storage"/>
+        <activity android:name=".activity.SettingsActivity"
+            android:label="@string/settings"/>
         <activity
             android:name=".activity.MusicListActivity"
             android:label="本地音乐" />
@@ -37,7 +39,11 @@
         <service
             android:name=".service.UpdateService"
             android:enabled="true"
-            android:exported="true"/>
+            android:exported="true" />
+
+        <activity android:name=".activity.MainActivity"
+            android:label="我的微博"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

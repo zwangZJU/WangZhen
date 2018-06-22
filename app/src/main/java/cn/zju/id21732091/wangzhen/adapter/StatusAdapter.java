@@ -22,6 +22,9 @@ import cn.zju.id21732091.wangzhen.pojo.StatusInfo;
 public class StatusAdapter extends RecyclerView.Adapter{
 
     private Context context;
+
+
+
     private ArrayList<StatusInfo> statusList;
 
 
@@ -93,5 +96,14 @@ public class StatusAdapter extends RecyclerView.Adapter{
                 }
             });
         }
+    }
+
+    public ArrayList<StatusInfo> getStatusList() {
+        return statusList;
+    }
+
+    public void setStatusList(ArrayList<StatusInfo> statusList) {
+        this.statusList = statusList;
+        notifyDataSetChanged();
     }
 }

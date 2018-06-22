@@ -21,11 +21,21 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_status"
-        android:layout_marginTop="60dp"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"/>
+    <com.tuesda.walker.circlerefresh.CircleRefreshLayout
+        app:AniBackColor="@color/pull_to_refresh"
+        app:AniForeColor="@color/white"
+        app:CircleSmaller="6"
+        android:layout_marginTop="55dp"
+        android:id="@+id/crl_pull_to_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_status"
+
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"/>
+    </com.tuesda.walker.circlerefresh.CircleRefreshLayout>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"

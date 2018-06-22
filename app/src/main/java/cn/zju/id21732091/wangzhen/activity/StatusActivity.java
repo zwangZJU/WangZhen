@@ -44,9 +44,13 @@ public class StatusActivity extends AppCompatActivity implements TextWatcher{
         window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
         setContentView(R.layout.activity_status);
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        String username = sp.getString("username",getResources().getString(R.string.author_info));
+
         mTvCharStatistic = findViewById(R.id.tv_char_statistic);
         mEtEditStatus = findViewById(R.id.et_edit_status);
         mTvAuthor = findViewById(R.id.tv_author_info);
+        mTvAuthor.setText(username);
         mEtEditStatus.addTextChangedListener(this);
         findViewById(R.id.btn_send_status).setOnClickListener(new View.OnClickListener() {
             @Override

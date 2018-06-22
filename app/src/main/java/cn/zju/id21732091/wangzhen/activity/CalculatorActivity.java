@@ -341,6 +341,7 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnClic
                 FLAG_PRESS_EQUAL = true;
                 result = Double.parseDouble(mEtCalcResult.getText().toString().substring(1));
                 resultList.clear();
+                resultList.add(String.valueOf(result));
                 break;
 
         }
