@@ -56,7 +56,7 @@
             android:textSize="20sp"
             android:background="@drawable/clac_button"
             android:layout_gravity="center"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/colorPrimary"
             />
         <ImageButton
 
@@ -166,7 +166,7 @@
 
             android:layout_gravity="fill"
             android:layout_rowSpan="2"
-            android:textColor="@color/colorAccent"/>
+            android:textColor="@color/colorPrimary"/>
         <Button
             android:text="%"
             android:id="@+id/btn_percent"

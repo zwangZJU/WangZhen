@@ -33,4 +33,6 @@
     <string name="start_service">启动服务</string>
     <string name="stop_service">停止服务</string>
     <string name="music_list">本地音乐</string>
+    <string name="author">王桢</string>
+    <string name="student_id">21732091</string>
 </resources>

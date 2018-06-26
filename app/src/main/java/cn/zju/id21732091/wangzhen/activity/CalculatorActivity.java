@@ -337,7 +337,7 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnClic
                 mEtCalcResult.setTextColor(getResources().getColor(R.color.gray));
                 break;
             case R.id.btn_equle:
-                mEtCalcResult.setTextColor(getResources().getColor(R.color.colorAccent));
+                mEtCalcResult.setTextColor(getResources().getColor(R.color.colorPrimary));
                 FLAG_PRESS_EQUAL = true;
                 result = Double.parseDouble(mEtCalcResult.getText().toString().substring(1));
                 resultList.clear();

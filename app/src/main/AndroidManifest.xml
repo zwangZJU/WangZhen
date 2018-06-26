@@ -27,6 +27,7 @@
             android:label="计算器(区分运算符优先级)" />
         <activity
             android:name=".activity.StatusActivity"
+            android:windowSoftInputMode="stateVisible"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activity.FileStorageActivity"
             android:label="@string/file_storage"/>

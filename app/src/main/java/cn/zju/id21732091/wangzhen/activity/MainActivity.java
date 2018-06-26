@@ -1,8 +1,10 @@
 package cn.zju.id21732091.wangzhen.activity;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
@@ -16,6 +18,8 @@ import android.provider.VoicemailContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.app.AlertDialog;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -178,27 +182,32 @@ public class MainActivity extends AppCompatActivity {
      * @return
      */
     private ArrayList<StatusInfo> loadData(SQLiteDatabase db) {
-        Cursor cursor = db.query(StatusContract.TABLE,null,null,null,null,null,StatusContract.DEFAULT_SORT);
-        ArrayList<StatusInfo> list = new ArrayList<StatusInfo>();
-        Bitmap userImg = null;
-        while(cursor.moveToNext()){
-            String id = cursor.getString(1);
-            String createAt = cursor.getString(3);
-            String content = cursor.getString(2);
-            if(userImg == null){
-                userImg = ImageUtils.readImage(getFilesDir().getPath()+"/"+id+".png");
-            }
-            content = content.substring(0,content.length()-13);
-            CharSequence relativeTime = DateUtils.getRelativeTimeSpanString(Long.parseLong(createAt));
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this,new String []{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
+            return null;
+        }else {
+            Cursor cursor = db.query(StatusContract.TABLE, null, null, null, null, null, StatusContract.DEFAULT_SORT);
+            ArrayList<StatusInfo> list = new ArrayList<StatusInfo>();
+            Bitmap userImg = null;
+            while (cursor.moveToNext()) {
+                String id = cursor.getString(1);
+                String createAt = cursor.getString(3);
+                String content = cursor.getString(2);
+                if (userImg == null) {
+                    userImg = ImageUtils.readImage(getFilesDir().getPath() + "/" + id + ".png");
+                }
+                content = content.substring(0, content.length() - 13);
+                CharSequence relativeTime = DateUtils.getRelativeTimeSpanString(Long.parseLong(createAt));
 
-            if(userImg!=null){
-                list.add(new StatusInfo(id,relativeTime.toString(),content,userImg));
-            }else {
-                // Toast.makeText(getApplicationContext(),"头像未加载，请稍后再试",Toast.LENGTH_SHORT).show();
-                list.add(new StatusInfo(id,relativeTime.toString(),content,null));
+                if (userImg != null) {
+                    list.add(new StatusInfo(id, relativeTime.toString(), content, userImg));
+                } else {
+                    // Toast.makeText(getApplicationContext(),"头像未加载，请稍后再试",Toast.LENGTH_SHORT).show();
+                    list.add(new StatusInfo(id, relativeTime.toString(), content, null));
+                }
             }
+            return list;
         }
-        return list;
     }
 
 

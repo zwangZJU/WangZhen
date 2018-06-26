@@ -8,8 +8,41 @@
     android:background="@color/colorPrimary"
     tools:context="cn.zju.id21732091.wangzhen.activity.StartActivity">
 
-    <include
-        layout="@layout/content_hello"/>
+    <ImageView
+        android:layout_marginTop="80dp"
+        android:id="@+id/iv_school_badge"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ic_school_badge"/>
+    <ImageView
+        android:id="@+id/iv_school_name"
+        android:layout_width="140dp"
+        android:layout_height="80dp"
+        android:layout_below="@+id/iv_school_badge"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ic_school_name"/>
+
+   <TextView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:id="@+id/tv_author_name"
+       android:layout_below="@id/iv_school_name"
+       android:layout_centerHorizontal="true"
+       android:layout_marginTop="120dp"
+       android:text="@string/author"
+       android:textSize="20sp"
+       android:textColor="@color/white"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_student_id"
+        android:text="@string/student_id"
+        android:layout_below="@+id/tv_author_name"
+        android:layout_centerHorizontal="true"
+        android:textSize="20sp"
+        android:textColor="@color/white"/>
 
 
 </RelativeLayout>

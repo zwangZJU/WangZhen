@@ -1,5 +1,6 @@
 package cn.zju.id21732091.wangzhen.activity;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.ContentResolver;
 
@@ -7,6 +8,7 @@ import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.database.Cursor;
 
@@ -21,6 +23,8 @@ import android.os.Message;
 import android.os.ParcelFileDescriptor;
 import android.provider.MediaStore;
 
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -83,23 +87,26 @@ public class MusicListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
 
-        // 获取数据
-        ContentResolver provider = getContentResolver();
-        Cursor cursor = provider.query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,new String[]{"artist","title","duration","_id","album_id","album",MediaStore.Audio.Media.DATA},null,null,null);
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this,new String []{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
+        }else {
+            // 获取数据
+            ContentResolver provider = getContentResolver();
+            Cursor cursor = provider.query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, new String[]{"artist", "title", "duration", "_id", "album_id", "album", MediaStore.Audio.Media.DATA}, null, null, null);
 
-        musicList = new ArrayList<>();
-        while(cursor.moveToNext()){
-            int t = Integer.parseInt(cursor.getString(2))/1000;
-            String min = String.valueOf(t/60);
-            String sec = String.valueOf(t%60);
-            if (sec.length()==1){
-                sec = "0"+sec;
+            musicList = new ArrayList<>();
+            while(cursor.moveToNext()){
+                int t = Integer.parseInt(cursor.getString(2))/1000;
+                String min = String.valueOf(t/60);
+                String sec = String.valueOf(t%60);
+                if (sec.length()==1){
+                    sec = "0"+sec;
+                }
+
+                musicList.add(new MusicInfo(cursor.getInt(3),cursor.getString(0),cursor.getString(1),"  |  " + min+":"+ sec, cursor.getInt(4),cursor.getString(5),cursor.getString(6)));
+
             }
-
-            musicList.add(new MusicInfo(cursor.getInt(3),cursor.getString(0),cursor.getString(1),"  |  " + min+":"+ sec, cursor.getInt(4),cursor.getString(5),cursor.getString(6)));
-
         }
-
         // 用RecyclerView显示数据
         setContentView(R.layout.activity_music_list);
 

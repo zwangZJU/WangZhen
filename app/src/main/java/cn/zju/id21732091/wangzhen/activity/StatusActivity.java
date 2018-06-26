@@ -7,6 +7,7 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.Window;
@@ -57,6 +58,10 @@ public class StatusActivity extends AppCompatActivity implements TextWatcher{
             public void onClick(View view) {
                 // Toast.makeText(getApplicationContext(),"点击发送",Toast.LENGTH_SHORT).show();
                 String status = mEtEditStatus.getText().toString();
+                if(TextUtils.isEmpty(status)){
+                    Toast.makeText(getApplicationContext(),"还没有输入内容呢", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 new PostTask().execute(status);
                 //new SubmitProgram().doSubmit(StatusActivity.this,"D2");
             }
