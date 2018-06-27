@@ -12,6 +12,7 @@ public class StatusInfo {
     public String creatAt;
     public String content;
     public Bitmap userImg;
+    public String userImgUrl;
 
     public StatusInfo(String userId, String creatAt, String content,Bitmap userImg ) {
         this.userId = userId;
@@ -54,4 +55,11 @@ public class StatusInfo {
     }
 
 
+    public String getUserImgUrl() {
+        return userImgUrl;
+    }
+
+    public void setUserImgUrl(String userImgUrl) {
+        this.userImgUrl = userImgUrl;
+    }
 }

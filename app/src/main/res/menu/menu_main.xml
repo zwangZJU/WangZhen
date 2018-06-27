@@ -13,13 +13,14 @@
     <item
         android:id="@+id/action_start_service"
         android:orderInCategory="0"
+        android:checkable="true"
         android:title="@string/start_service"
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/action_stop_service"
+        android:id="@+id/action_delete"
         android:orderInCategory="1"
-        android:title="@string/stop_service"
+        android:title="@string/delete_data"
         app:showAsAction="never" />
 
     <item
@@ -55,7 +56,7 @@
 
     <item
         android:id="@+id/action_submit"
-        android:orderInCategory="100"
+        android:orderInCategory="7"
         android:title="@string/action_settings"
         app:showAsAction="never" />
 

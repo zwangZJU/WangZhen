@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 import cn.zju.id21732091.wangzhen.R;
@@ -61,6 +63,13 @@ public class StatusAdapter extends RecyclerView.Adapter{
         Bitmap userImg = statusInfo.getUserImg();
         if(userImg != null){
             mHolder.mIvUserImg.setImageBitmap(userImg);
+        }else{
+            String userImgUrl = statusInfo.getUserImgUrl();
+            if(userImgUrl.length() > 0){
+                Picasso.with(context)
+                        .load(userImgUrl)
+                        .into(mHolder.mIvUserImg);
+            }
         }
 
         mHolder.itemView.setTag(position);

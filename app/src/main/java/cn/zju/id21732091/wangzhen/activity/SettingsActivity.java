@@ -19,7 +19,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        menu.getItem(3).setVisible(false);
+        menu.getItem(4).setVisible(false);
         return super.onPrepareOptionsMenu(menu);
     }
 
@@ -41,9 +41,9 @@ public class SettingsActivity extends AppCompatActivity {
             return true;
         }
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_submit) {
-           new SubmitProgram().doSubmit(this,"E2");
-           // Toast.makeText(this, R.string.pause_submit,Toast.LENGTH_SHORT).show();
+        if (id == R.id.action_play_music) {
+            startActivity(new Intent(this,MusicPlayerActivity.class));
+            finish();
             return true;
         } else if (id == R.id.action_calculator) {
             startActivity(new Intent(this,CalculatorActivity.class));

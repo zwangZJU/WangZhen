@@ -25,6 +25,7 @@ import java.util.List;
 import cn.iipc.android.tweetlib.Status;
 import cn.iipc.android.tweetlib.YambaClient;
 import cn.iipc.android.tweetlib.YambaClientException;
+import cn.zju.id21732091.wangzhen.TweetApplication;
 import cn.zju.id21732091.wangzhen.db.DbHelper;
 import cn.zju.id21732091.wangzhen.db.StatusContract;
 import cn.zju.id21732091.wangzhen.utils.ImageUtils;
@@ -66,7 +67,7 @@ public class UpdateService extends Service implements SharedPreferences.OnShared
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         if(!runFlag){
-            this.runFlag = true;
+            ((TweetApplication)getApplication()).serviceRunning = runFlag = true;
             this.updater.start();
         }
         Log.d(TAG,"onStartCommand");
@@ -76,7 +77,7 @@ public class UpdateService extends Service implements SharedPreferences.OnShared
     @Override
     public void onDestroy() {
         super.onDestroy();
-        runFlag = false;
+        ((TweetApplication)getApplication()).serviceRunning = runFlag = false;
         this.updater.interrupt();
         this.updater = null;
         Log.d(TAG,"onDestroy");
@@ -130,6 +131,12 @@ public class UpdateService extends Service implements SharedPreferences.OnShared
                             count++;
                             Log.d(TAG,String.format("%s: %s",usr,msg));
                         }
+
+                    }
+                    if(count >= 0){
+                        Intent bcast = new Intent(StatusContract.NEW_STATUSES);
+                        bcast.putExtra("count",count);
+                        sendBroadcast(bcast);
                     }
                 } catch (YambaClientException e) {
                     e.printStackTrace();

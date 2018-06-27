@@ -14,7 +14,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -195,10 +194,10 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnClic
             return true;
         }
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_submit) {
+        if (id == R.id.action_play_music) {
            // new SubmitProgram().doSubmit(this,"C1");
-            Toast.makeText(this, R.string.pause_submit,Toast.LENGTH_SHORT).show();
-
+            startActivity(new Intent(this,MusicPlayerActivity.class));
+            finish();
             return true;
         }else if(id == R.id.action_status){
             startActivity(new Intent(this,StatusActivity.class));

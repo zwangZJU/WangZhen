@@ -98,9 +98,10 @@ public class FileStorageActivity extends AppCompatActivity implements View.OnCli
             return true;
         }
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_submit) {
+        if (id == R.id.action_play_music) {
            // new SubmitProgram().doSubmit(this,"E1");
-            Toast.makeText(this, R.string.pause_submit,Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this,MusicPlayerActivity.class));
+            finish();
             return true;
         } else if (id == R.id.action_calculator) {
             startActivity(new Intent(this,CalculatorActivity.class));

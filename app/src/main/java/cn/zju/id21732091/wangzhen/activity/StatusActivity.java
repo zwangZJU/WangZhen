@@ -128,6 +128,7 @@ public class StatusActivity extends AppCompatActivity implements TextWatcher{
             //mTvAuthor.setText(result + " By<"+getPackageName()+">");
             if(result.startsWith("Successfully")){
                 mEtEditStatus.setText("");
+
             }
         }
     }

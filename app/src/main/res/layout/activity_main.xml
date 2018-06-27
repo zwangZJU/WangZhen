@@ -44,8 +44,8 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         android:background="@color/colorPrimary"
-         app:rippleColor="@color/colorPrimary"
-        android:backgroundTint="@color/colorPrimary"
+        app:rippleColor="@color/colorPrimary"
+        app:backgroundTint="@color/colorPrimary"
         app:borderWidth="0dp"
         android:src="@drawable/ic_add_status"
        />

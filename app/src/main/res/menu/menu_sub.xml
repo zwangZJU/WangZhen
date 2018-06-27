@@ -30,15 +30,17 @@
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_play_music"
         android:orderInCategory="3"
+        android:title="@string/play_music"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="4"
         android:title="@string/settings"
         app:showAsAction="never"/>
 
-    <item
-        android:id="@+id/action_submit"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
+
 
 </menu>

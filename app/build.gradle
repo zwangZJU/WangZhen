@@ -4,7 +4,7 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "cn.zju.id21732091.wangzhen"
-        minSdkVersion 21
+        minSdkVersion 19
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -17,6 +17,8 @@ android {
         }
     }
     sourceSets { main { res.srcDirs = ['src/main/res', 'src/main/res/xml'] } }
+    productFlavors {
+    }
 }
 
 dependencies {
@@ -30,4 +32,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation files('libs/yambalib18.jar')
     implementation project(':circlerefresh')
+    implementation 'com.squareup.picasso:picasso:2.5.2'
 }

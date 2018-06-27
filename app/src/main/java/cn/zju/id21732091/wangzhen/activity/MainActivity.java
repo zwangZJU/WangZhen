@@ -2,21 +2,19 @@ package cn.zju.id21732091.wangzhen.activity;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.content.DialogInterface;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
-import android.provider.VoicemailContract;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.app.AlertDialog;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -34,20 +32,13 @@ import android.widget.Toast;
 
 import com.tuesda.walker.circlerefresh.CircleRefreshLayout;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 
-import cn.iipc.android.tweetlib.SubmitProgram;
 import cn.zju.id21732091.wangzhen.R;
+import cn.zju.id21732091.wangzhen.TweetApplication;
 import cn.zju.id21732091.wangzhen.adapter.StatusAdapter;
 import cn.zju.id21732091.wangzhen.db.DbHelper;
 import cn.zju.id21732091.wangzhen.db.StatusContract;
-import cn.zju.id21732091.wangzhen.pojo.MusicInfo;
 import cn.zju.id21732091.wangzhen.pojo.StatusInfo;
 import cn.zju.id21732091.wangzhen.service.UpdateService;
 import cn.zju.id21732091.wangzhen.utils.ImageUtils;
@@ -69,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int ACTION_FINISH_REFRESH = 1;
     private static final int ACTION_REFRESH = 2;
     private static boolean isExit = false;// 定义一个变量，来标识是否退出
+    private boolean serviceRunning = false;
     private int updateNum = 0;
 
     private StatusAdapter mStatusAdapter;
@@ -81,7 +73,8 @@ public class MainActivity extends AppCompatActivity {
                 mStatusAdapter.setStatusList(statusList);
                 mCrlPullToRefresh.finishRefreshing();
             }else if (msg.what == ACTION_REFRESH){
-                startService(new Intent(new Intent(MainActivity.this,UpdateService.class)));
+
+
                 statusList = loadData(db);
                 mStatusAdapter.setStatusList(statusList);
                 Toast.makeText(getApplicationContext(),"更新"+String.valueOf(statusList.size()-lastStatusListSize)+"条",Toast.LENGTH_SHORT).show();
@@ -90,7 +83,10 @@ public class MainActivity extends AppCompatActivity {
             }
         };
     };
+    private Cursor cursor;
 
+    private TimelineReceiver receiver;
+    private IntentFilter filter;
 
 
     @Override
@@ -125,6 +121,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        receiver = new TimelineReceiver();
+        filter = new IntentFilter(StatusContract.NEW_STATUSES);
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -152,7 +150,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void refreshing() {
                 lastStatusListSize = statusList.size();
+
+                // reset the update service
+                stopService(new Intent(getApplicationContext(), UpdateService.class));
+                serviceRunning = false;
                 startService(new Intent(getApplicationContext(),UpdateService.class));
+                serviceRunning = true;
                 new Thread(){
                     @Override
                     public void run() {
@@ -175,6 +178,19 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        registerReceiver(receiver, filter);
+    }
+
+
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        unregisterReceiver(receiver);
+    }
 
     /**
      * 从数据库中加载数据
@@ -186,25 +202,28 @@ public class MainActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this,new String []{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
             return null;
         }else {
-            Cursor cursor = db.query(StatusContract.TABLE, null, null, null, null, null, StatusContract.DEFAULT_SORT);
+            cursor = db.query(StatusContract.TABLE, null, null, null, null, null, StatusContract.DEFAULT_SORT);
             ArrayList<StatusInfo> list = new ArrayList<StatusInfo>();
             Bitmap userImg = null;
             while (cursor.moveToNext()) {
                 String id = cursor.getString(1);
                 String createAt = cursor.getString(3);
                 String content = cursor.getString(2);
-                if (userImg == null) {
-                    userImg = ImageUtils.readImage(getFilesDir().getPath() + "/" + id + ".png");
+
+
+                userImg = ImageUtils.readImage(getFilesDir().getPath() + "/" + id + ".png");
+
+                if(content.length()>13){
+                    content = content.substring(0, content.length() - 13);
                 }
-                content = content.substring(0, content.length() - 13);
+
                 CharSequence relativeTime = DateUtils.getRelativeTimeSpanString(Long.parseLong(createAt));
 
-                if (userImg != null) {
-                    list.add(new StatusInfo(id, relativeTime.toString(), content, userImg));
-                } else {
-                    // Toast.makeText(getApplicationContext(),"头像未加载，请稍后再试",Toast.LENGTH_SHORT).show();
-                    list.add(new StatusInfo(id, relativeTime.toString(), content, null));
-                }
+
+                StatusInfo statusInfo = new StatusInfo(id, relativeTime.toString(), content, userImg);
+                statusInfo.setUserImgUrl(cursor.getString(4));
+                list.add(statusInfo );
+
             }
             return list;
         }
@@ -219,7 +238,24 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         menu.getItem(3).setVisible(false);
+        menu.getItem(7).setVisible(false);
         return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onMenuOpened(int featureId, Menu menu) {
+        if(menu == null) return true;
+        serviceRunning = ((TweetApplication)getApplication()).serviceRunning;
+        MenuItem toggleItem = menu.findItem(R.id.action_start_service);
+        toggleItem.setChecked(serviceRunning);
+
+        if(serviceRunning){
+            toggleItem.setTitle(R.string.stop_service);
+
+        }else {
+            toggleItem.setTitle(R.string.start_service);
+        }
+        return true;
     }
 
     @Override
@@ -228,6 +264,8 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -255,19 +293,33 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(this,SettingsActivity.class));
             return true;
         } else if(id == R.id.action_add_status){
+            stopService(new Intent(getApplicationContext(), UpdateService.class));
+            serviceRunning = false;
+            startService(new Intent(getApplicationContext(),UpdateService.class));
+            serviceRunning = true;
             Message msg = new Message();
             msg.what = ACTION_REFRESH;
             handler.sendMessage(msg);
             //startActivity(new Intent(this,StatusActivity.class));
             return true;
         } else if(id == R.id.action_music_list){
-            startActivity(new Intent(this,MusicListActivity.class));
+            startActivity(new Intent(this,MusicPlayerActivity.class));
             return true;
         } else if(id == R.id.action_start_service){
-            startService(new Intent(this,UpdateService.class));
+            if(serviceRunning) {
+                stopService(new Intent(this, UpdateService.class));
+                serviceRunning = false;
+            }else{
+                startService(new Intent(this,UpdateService.class));
+                serviceRunning = true;
+            }
             return true;
-        } else if(id == R.id.action_stop_service){
-            stopService(new Intent(this,UpdateService.class));
+        } else if(id == R.id.action_delete){
+            db.delete(StatusContract.TABLE, null, null);
+            cursor.requery();
+            statusList = loadData(db);
+            mStatusAdapter.setStatusList(statusList);
+            Toast.makeText(this,"已清除数据",Toast.LENGTH_SHORT).show();
             return true;
         }
 
@@ -299,6 +351,23 @@ public class MainActivity extends AppCompatActivity {
             System.exit(0);
         }
 
+    }
+
+    class TimelineReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            int count = intent.getIntExtra("count",0);
+            if(count>0){
+                cursor.requery();
+                statusList = loadData(db);
+                mStatusAdapter.setStatusList(statusList);
+               // mStatusAdapter.notifyDataSetChanged();
+                Toast.makeText(MainActivity.this,"更新了"+count+"条记录。",Toast.LENGTH_SHORT).show();
+            }
+
+
+        }
     }
 
 }
