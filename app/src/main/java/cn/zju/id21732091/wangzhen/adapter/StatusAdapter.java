@@ -68,6 +68,7 @@ public class StatusAdapter extends RecyclerView.Adapter{
             if(userImgUrl.length() > 0){
                 Picasso.with(context)
                         .load(userImgUrl)
+                        .placeholder(R.drawable.ic_user_img_default)
                         .into(mHolder.mIvUserImg);
             }
         }
